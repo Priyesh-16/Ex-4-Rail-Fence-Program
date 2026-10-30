@@ -20,51 +20,49 @@ STEP-5: Read the characters row wise or column wise in the former order to get t
 
 # PROGRAM
 ~~~
+
 #include <stdio.h>
 #include <string.h>
 
-int main()
-{
+int main() {
     char text[100], rail[10][100];
-    int i, j, key, len;
+    int i, j, len, rails;
+    int row = 0, dir = 1;
 
-    printf("Enter text: ");
-    scanf("%99s", text);
+    printf("Enter the plain text: ");
+    scanf("%s", text);
 
-    printf("Enter key: ");
-    scanf("%d", &key);
+    printf("Enter number of rails: ");
+    scanf("%d", &rails);
 
     len = strlen(text);
 
-    if (key < 2 || key > 10) {
-        printf("Invalid key");
-        return 0;
+    for (i = 0; i < rails; i++) {
+        for (j = 0; j < len; j++) {
+            rail[i][j] = ' ';
+        }
     }
 
-    for (i = 0; i < key; i++)
-        for (j = 0; j < len; j++)
-            rail[i][j] = '\0';
-
-    i = 0;
-    int row = 0, dir = 1;
-
-    for (j = 0; j < len; j++) {
-        rail[row][j] = text[j];
+    for (i = 0; i < len; i++) {
+        rail[row][i] = text[i];
 
         if (row == 0)
             dir = 1;
-        else if (row == key - 1)
+        else if (row == rails - 1)
             dir = -1;
 
         row += dir;
     }
 
-    printf("Encrypted text: ");
+    printf("Cipher text/Encrypted text: ");
 
-    for (i = 0; i < key; i++)
-        for (j = 0; j < len; j++)
-            if (rail[i][j] != '\0')
+    for (i = 0; i < rails; i++) {
+        for (j = 0; j < len; j++) {
+            if (rail[i][j] != ' ') {
                 printf("%c", rail[i][j]);
+            }
+        }
+    }
 
     return 0;
 }
@@ -73,7 +71,7 @@ int main()
 ~~~
 # OUTPUT
 
-<img width="412" height="242" alt="Screenshot 2026-10-29 091757" src="https://github.com/user-attachments/assets/ebde24eb-7fa9-409e-90c9-2ee1141f5301" />
+<img width="1917" height="1198" alt="Screenshot 2026-10-30 185120" src="https://github.com/user-attachments/assets/1c229c8c-e328-42ed-9f73-3b05b2d156e4" />
 
 
 # RESULT
